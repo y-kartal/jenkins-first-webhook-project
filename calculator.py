@@ -1,38 +1,24 @@
-def toplama(x, y):
-    return x + y
+from PIL import Image, ImageDraw
 
-def cikarma(x, y):
-    return x - y
+# Resim boyutları ve arkaplan rengi
+width, height = 400, 200
+bg_color = "white"
 
-def carpma(x, y):
-    return x * y
+# Resim ve çizim nesnesi oluştur
+image = Image.new("RGB", (width, height), bg_color)
+draw = ImageDraw.Draw(image)
 
-def bolme(x, y):
-    if y == 0:
-        return "Bir sayı sıfıra bölünemez!"
-    else:
-        return x / y
+# Kırmızı bir daire çiz
+draw.ellipse((50, 50, 150, 150), fill="red")
 
-print("İşlem seçenekleri:")
-print("1. Toplama")
-print("2. Çıkarma")
-print("3. Çarpma")
-print("4. Bölme")
+# Yeşil bir dikdörtgen çiz
+draw.rectangle((200, 50, 300, 150), fill="green")
 
-while True:
-    secim = input("Lütfen yapmak istediğiniz işlemi seçin (1/2/3/4): ")
+# Mavi bir çizgi çiz
+draw.line((50, 160, 350, 160), fill="blue", width=5)
 
-    if secim in ('1', '2', '3', '4'):
-        sayi1 = float(input("İlk sayıyı girin: "))
-        sayi2 = float(input("İkinci sayıyı girin: "))
+# Resmi göster
+image.show()
 
-        if secim == '1':
-            print("Sonuç:", toplama(sayi1, sayi2))
-        elif secim == '2':
-            print("Sonuç:", cikarma(sayi1, sayi2))
-        elif secim == '3':
-            print("Sonuç:", carpma(sayi1, sayi2))
-        elif secim == '4':
-            print("Sonuç:", bolme(sayi1, sayi2))
-    else:
-        print("Geçersiz giriş! Lütfen 1, 2, 3 veya 4'ten birini seçin.")
+# Resmi kaydet
+image.save("example.png")
